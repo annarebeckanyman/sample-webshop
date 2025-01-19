@@ -1,0 +1,22 @@
+.navWrapper {
+  height: inherit;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.logoText {
+  font-size: var(--mantine-font-size-xl);
+}
+
+.linkText {
+  text-transform: uppercase;
+  font-size: var(--mantine-font-size-xl);
+}
+
+.orderIcon {
+  width: rem(20px);
+  height: rem(20px);
+  color: var(--mantine-color-white);
+}
