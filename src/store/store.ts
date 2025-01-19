@@ -1,15 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { uiSlice } from './slices/uiSlice'
 import { productsSlice } from './slices/productsSlice'
-import { bookApi } from './slices/apiSlice'
+import { booksApi } from './slices/booksSlice'
 
 const store = configureStore({
   reducer: {
     ui: uiSlice.reducer,
     products: productsSlice.reducer,
-    [bookApi.reducerPath]: bookApi.reducer,
+    [booksApi.reducerPath]: booksApi.reducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(bookApi.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(booksApi.middleware),
 })
 
 export type RootState = ReturnType<typeof store.getState>
