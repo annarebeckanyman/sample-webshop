@@ -1,7 +1,6 @@
 import { AppShell, Container, Paper, useMantineTheme } from '@mantine/core'
 import { Outlet } from 'react-router-dom'
 import Header from '@components/header/Header'
-import classes from './styles/layout.module.css'
 import { useMediaQuery } from '@mantine/hooks'
 
 export default function Layout() {
@@ -9,8 +8,8 @@ export default function Layout() {
   const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.xs})`)
 
   return (
-    <AppShell header={{ height: isMobile ? 72 : 98 }} withBorder={false} style={{ backgroundColor: 'gray' }}>
-      <AppShell.Header className={classes.header}>
+    <AppShell header={{ height: isMobile ? 72 : 98 }} withBorder={false}>
+      <AppShell.Header>
         <Header />
       </AppShell.Header>
       <AppShell.Main>

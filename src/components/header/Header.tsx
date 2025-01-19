@@ -44,29 +44,24 @@ export default function Header() {
       onClick={() => handleLinkClick(item.path)}
       className={classes.link}
     >
-      <Text c={isMobile ? 'black' : 'white'} className={classes.linkText}>
-        {item.label}
-      </Text>
+      <Text className={classes.linkText}>{item.label}</Text>
     </Link>
   )
 
   const logoLink = (
     <Link to="/" className={classes.link}>
-      <Text c="white" className={classes.logoText}>
-        Sample Webshop
-      </Text>
+      <Text className={classes.logoText}>Sample Webshop</Text>
     </Link>
   )
 
   const orderLink = (
-    <Link to="/checkout" onClick={() => handleLinkClick('/checkout')} className={showMobileMenu ? classes.link : ''}>
-      {showMobileMenu ? (
-        <Text c="black" className={classes.linkText}>
+    <Link to="/checkout" onClick={() => handleLinkClick('/checkout')} className={classes.link}>
+      <Flex align="center" gap="xs">
+        <Text className={classes.linkText} tt="capitalize" mb={1}>
           Shopping cart
         </Text>
-      ) : (
         <FaShoppingBasket className={classes.orderIcon} aria-labelledby="Shopping cart" />
-      )}
+      </Flex>
     </Link>
   )
 
@@ -79,7 +74,7 @@ export default function Header() {
           {isMobile ? (
             <>
               {logoLink}
-              <Burger opened={showMobileMenu} onClick={toggleDrawer} aria-label="Show menu" color="white" />
+              <Burger opened={showMobileMenu} onClick={toggleDrawer} aria-label="Show menu" />
             </>
           ) : (
             <>
