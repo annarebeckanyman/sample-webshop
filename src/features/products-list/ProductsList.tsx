@@ -1,7 +1,7 @@
 import { Box, Divider, LoadingOverlay, Table, Text } from '@mantine/core'
-import { useGetBooksBySubjectQuery } from '@store/slices/apiSlice'
 import { Filter } from '@typings/filter.types'
-import TableRow from './components/TableRow'
+import { useGetBooksBySubjectQuery } from '@store/slices/booksSlice'
+import ProductRow from './components/ProductRow'
 
 interface Props {
   filter: Filter
@@ -21,7 +21,7 @@ export default function ProductsList({ filter }: Props) {
         <Table verticalSpacing="md">
           <Table.Tbody>
             {data ? (
-              data.works.map((work) => <TableRow key={work.cover_id} product={work} />)
+              data.works.map((work) => <ProductRow key={work.cover_id} product={work} />)
             ) : (
               <Table.Tr>
                 <Table.Td>

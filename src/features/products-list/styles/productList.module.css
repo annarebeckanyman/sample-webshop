@@ -1,6 +1,7 @@
-.productLink {
-  text-decoration: none;
+.productCell {
+  background-color: transparent;
   color: var(--mantine-color-black);
+  text-decoration: none;
 }
 
 .buttonCell {
