@@ -1,0 +1,19 @@
+.buttonText {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--mantine-color-black);
+  border-color: var(--mantine-color-black);
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.buttonText:hover {
+  color: var(--mantine-color-white);
+  background-color: var(--mantine-color-black);
+}
+
+.activeButton {
+  color: var(--mantine-color-white);
+  background-color: var(--mantine-color-black);
+}

@@ -1,0 +1,10 @@
+.productLink {
+  text-decoration: none;
+  color: var(--mantine-color-black);
+}
+
+.buttonCell {
+  display: flex;
+  align-items: start;
+  justify-items: 'start';
+}
