@@ -14,8 +14,8 @@ export default function Layout() {
         <Header />
       </AppShell.Header>
       <AppShell.Main>
-        <Container h="inherit" size="xl">
-          <Paper radius="md" p="xl" my="xl">
+        <Container h="inherit" size="xl" py="xl">
+          <Paper radius="md" p="xl">
             <Outlet />
           </Paper>
         </Container>
