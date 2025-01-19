@@ -8,9 +8,8 @@ import { toggleMobileMenu } from '@store/slices/uiSlice'
 import classes from './styles/header.module.css'
 
 const links = [
-  { path: '/', label: 'Start' },
-  { path: '/butiken', label: 'Butiken' },
-  { path: '/kontakt', label: 'Kontakt' },
+  { path: '/', label: 'Products' },
+  { path: '/contact', label: 'Contact' },
 ]
 
 export default function Header() {
@@ -60,12 +59,18 @@ export default function Header() {
   )
 
   const orderLink = (
-    <Link to="/bestallning" onClick={() => handleLinkClick('/bestallning')} className={showMobileMenu ? classes.menuLink : ''}>
-      {showMobileMenu ? <Text c="black">Varukorg</Text> : <FaShoppingBasket className={classes.orderIcon} />}
+    <Link to="/checkout" onClick={() => handleLinkClick('/checkout')} className={showMobileMenu ? classes.link : ''}>
+      {showMobileMenu ? (
+        <Text c="black" className={classes.linkText}>
+          Shopping cart
+        </Text>
+      ) : (
+        <FaShoppingBasket className={classes.orderIcon} aria-labelledby="Shopping cart" />
+      )}
     </Link>
   )
 
-  const menuLinks = links.filter((item) => !(item.label === 'Start' && !showMobileMenu)).map(renderMenuLink)
+  const menuLinks = links.map(renderMenuLink)
 
   return (
     <Container h="100%" size="xl">
@@ -74,7 +79,7 @@ export default function Header() {
           {isMobile ? (
             <>
               {logoLink}
-              <Burger opened={showMobileMenu} onClick={toggleDrawer} aria-label="Visa meny" color="white" />
+              <Burger opened={showMobileMenu} onClick={toggleDrawer} aria-label="Show menu" color="white" />
             </>
           ) : (
             <>
