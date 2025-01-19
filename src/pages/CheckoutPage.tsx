@@ -1,5 +1,9 @@
-import { Title } from '@mantine/core'
+import { Grid, Title } from '@mantine/core'
 
 export default function CheckoutPage() {
-  return <Title>Shopping cart</Title>
+  return (
+    <Grid>
+      <Title>Shopping cart</Title>
+    </Grid>
+  )
 }
