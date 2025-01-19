@@ -4,7 +4,7 @@ import BuyButton from '@features/buy-button/BuyButton'
 import SubjectChip from '@features/subject-section/SubjectSection'
 import { CartItem, ProductDetails, Work } from '@typings/product.types'
 import classes from '../styles/productList.module.css'
-import { getCleanWorkId } from '@utils/getCleanWorkId'
+import { getCleanWorkId } from '@utils/getCleanIds'
 import { useAppDispatch } from '@store/hooks'
 import { setSelectedProduct } from '@store/slices/productsSlice'
 

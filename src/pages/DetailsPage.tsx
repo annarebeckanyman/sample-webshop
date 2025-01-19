@@ -5,7 +5,7 @@ import SubjectChip from '@features/subject-section/SubjectSection'
 import BuyButton from '@features/buy-button/BuyButton'
 import { useAppSelector } from '@store/hooks'
 import { CartItem, ProductResponse } from '@typings/product.types'
-import { getCleanAuthorId, getCleanWorkId } from '@utils/getCleanWorkId'
+import { getCleanAuthorId, getCleanWorkId } from '@utils/getCleanIds'
 
 export default function DetailsPage() {
   const { selectedProduct } = useAppSelector((state) => state.products)
