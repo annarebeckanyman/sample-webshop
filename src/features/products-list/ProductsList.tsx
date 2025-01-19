@@ -15,9 +15,8 @@ export default function ProductsList({ filter }: Props) {
       <Text mt="xl" mb="xs">
         {data ? data.works.length : '0'} products
       </Text>
-      <Box pos="relative" mih={300}>
-        <LoadingOverlay visible={isLoading} overlayProps={{ blur: 1 }} />
-        {isError && <Text>Something went wrong while getting products, please try again</Text>}
+      <Box pos="relative" mih={100}>
+        <LoadingOverlay visible={isLoading} />
         <Divider />
         <Table verticalSpacing="md">
           <Table.Tbody>
@@ -26,7 +25,7 @@ export default function ProductsList({ filter }: Props) {
             ) : (
               <Table.Tr>
                 <Table.Td>
-                  <Text>No products found</Text>
+                  {!isLoading && <Text ta="center">{isError ? 'Something went wrong, please try again' : 'No products found'}</Text>}
                 </Table.Td>
               </Table.Tr>
             )}
