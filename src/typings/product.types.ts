@@ -23,6 +23,13 @@ export type Author = {
   name: string
 }
 
+export type Description =
+  | string
+  | {
+      type: string
+      value: string
+    }
+
 export type ProductResponse = {
   title: string
   key: string
@@ -36,8 +43,8 @@ export type ProductResponse = {
       }
     },
   ]
-  description: string
-  first_sentence: {
+  description: Description
+  first_sentence?: {
     type: string
     value: string
   }
