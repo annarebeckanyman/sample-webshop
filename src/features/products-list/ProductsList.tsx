@@ -1,8 +1,6 @@
 import { Box, Divider, LoadingOverlay, Table, Text } from '@mantine/core'
 import { useEffect } from 'react'
 import { useGetBooksBySubjectQuery } from '@api/booksSlice'
-import { useAppDispatch } from '@store/hooks'
-import { setSelectedProduct } from '@store/slices/productsSlice'
 import { Filter } from '@typings/filter.types'
 import ProductRow from './components/ProductRow'
 
@@ -12,10 +10,9 @@ interface Props {
 
 export default function ProductsList({ filter }: Props) {
   const { data, isLoading, isError } = useGetBooksBySubjectQuery(filter.subject)
-  const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(setSelectedProduct(null))
+    localStorage.removeItem('selectedProduct')
   }, [])
 
   return (
@@ -23,8 +20,8 @@ export default function ProductsList({ filter }: Props) {
       <Text mt="xl" mb="xs">
         {data ? data.works.length : '0'} products
       </Text>
-      <Box pos="relative" mih={100}>
-        <LoadingOverlay visible={isLoading} loaderProps={{ color: '#3d405b' }} />
+      <Box pos="relative" h={isLoading ? 500 : 'auto'}>
+        <LoadingOverlay visible={isLoading} loaderProps={{ color: '#3d405b' }} py="xl" />
         <Divider />
         <Table verticalSpacing="md">
           <Table.Tbody>
