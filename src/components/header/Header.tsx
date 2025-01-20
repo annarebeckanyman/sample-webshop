@@ -45,7 +45,7 @@ export default function Header() {
       onClick={() => handleLinkClick(item.path)}
       className={classes.link}
     >
-      <Text className={classes.linkText}>{item.label}</Text>
+      <Text className={classes.menuLink}>{item.label}</Text>
     </Link>
   )
 
@@ -58,7 +58,7 @@ export default function Header() {
   const orderLink = (
     <Link to="/checkout" onClick={() => handleLinkClick('/checkout')} className={classes.link}>
       <Flex align="center" gap="xs">
-        <Text className={classes.linkText} tt="capitalize" mb={1}>
+        <Text mb={1} className={classes.orderLink}>
           Shopping cart
         </Text>
         <FaShoppingBasket className={classes.orderIcon} aria-labelledby="Shopping cart" />

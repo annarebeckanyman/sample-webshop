@@ -6,8 +6,19 @@
   text-decoration: none;
 }
 
-.linkText {
+.menuLink {
   text-transform: uppercase;
+  font-size: var(--mantine-font-size-xl);
+  color: var(--mantine-color-black);
+}
+
+.menuLink:hover {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.orderLink {
+  text-transform: capitalize;
   font-size: var(--mantine-font-size-xl);
   color: var(--mantine-color-black);
 }
