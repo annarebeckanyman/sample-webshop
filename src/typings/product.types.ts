@@ -14,21 +14,14 @@ export type Work = {
   availability: Availability
 }
 
-type Availability = {
-  isbn: string
-}
-
-export type Author = {
+type Author = {
   key: string
   name: string
 }
 
-export type Description =
-  | string
-  | {
-      type: string
-      value: string
-    }
+type Availability = {
+  isbn: string
+}
 
 export type ProductResponse = {
   title: string
@@ -50,6 +43,13 @@ export type ProductResponse = {
   }
   subjects: string[]
 }
+
+export type Description =
+  | string
+  | {
+      type: string
+      value: string
+    }
 
 export type ProductDetails = {
   workId: string
