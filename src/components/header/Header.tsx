@@ -3,7 +3,7 @@ import { useMediaQuery } from '@mantine/hooks'
 import { useEffect, useState } from 'react'
 import { FaShoppingBasket } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import logo from '@assets/bookstore-logo.png'
+import logo from '@assets/logo.png'
 import { useAppDispatch, useAppSelector } from '@store/hooks'
 import { toggleMobileMenu } from '@store/slices/uiSlice'
 import classes from './styles/header.module.css'
@@ -51,7 +51,7 @@ export default function Header() {
 
   const logoLink = (
     <Link to="/" className={classes.link}>
-      <Image src={logo} alt="Bookstore" h={isMobile ? 55 : 70} />
+      <Image src={logo} alt="Bookstore" h={isMobile ? 55 : 80} />
     </Link>
   )
 
