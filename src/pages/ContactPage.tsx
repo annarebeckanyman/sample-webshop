@@ -1,11 +1,9 @@
-// import ContactMap from '@features/contact-map/ContactMap'
 import { Grid, Title } from '@mantine/core'
 
 export default function ContactPage() {
   return (
     <Grid>
-      <Title>Contact us</Title>
-      {/* <ContactMap /> */}
+      <Title fw={500}>Contact us</Title>
     </Grid>
   )
 }
