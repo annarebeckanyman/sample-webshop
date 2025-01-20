@@ -9,12 +9,6 @@
 
 ### First time installation
 
-Add the variables needed to a `.env.local` file:
-
-```
-echo MAPBOX_ACCESS_TOKEN=[Found in Mapbox Account under Tokens] >> .env.local
-```
-
 Install all project dependencies:
 
 ```
