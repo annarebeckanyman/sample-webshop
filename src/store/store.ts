@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
+import { booksApi } from '@api/booksSlice'
 import { uiSlice } from './slices/uiSlice'
 import { productsSlice } from './slices/productsSlice'
-import { booksApi } from './slices/booksSlice'
 
 const store = configureStore({
   reducer: {

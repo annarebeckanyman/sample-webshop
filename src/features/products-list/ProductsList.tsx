@@ -1,10 +1,10 @@
 import { Box, Divider, LoadingOverlay, Table, Text } from '@mantine/core'
-import { Filter } from '@typings/filter.types'
-import { useGetBooksBySubjectQuery } from '@store/slices/booksSlice'
-import ProductRow from './components/ProductRow'
 import { useEffect } from 'react'
+import { useGetBooksBySubjectQuery } from '@api/booksSlice'
 import { useAppDispatch } from '@store/hooks'
 import { setSelectedProduct } from '@store/slices/productsSlice'
+import { Filter } from '@typings/filter.types'
+import ProductRow from './components/ProductRow'
 
 interface Props {
   filter: Filter

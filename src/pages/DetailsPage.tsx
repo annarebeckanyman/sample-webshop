@@ -1,13 +1,13 @@
 import { Box, Grid, Group, LoadingOverlay, Stack, Text, Title, useMantineTheme } from '@mantine/core'
+import { useMediaQuery } from '@mantine/hooks'
 import { Link, useParams } from 'react-router-dom'
-import { useGetBookByWorkIdQuery } from '@store/slices/booksSlice'
-import SubjectChip from '@features/subject-section/SubjectSection'
+import { useGetBookByWorkIdQuery } from '@api/booksSlice'
 import BuyButton from '@features/buy-button/BuyButton'
+import CoverImage from '@features/cover-image/CoverImage'
+import SubjectChip from '@features/subject-section/SubjectSection'
 import { useAppSelector } from '@store/hooks'
 import { CartItem, Description, ProductResponse } from '@typings/product.types'
 import { getCleanAuthorId, getCleanWorkId } from '@utils/getCleanIds'
-import { useMediaQuery } from '@mantine/hooks'
-import CoverImage from '@features/cover-image/CoverImage'
 
 export default function DetailsPage() {
   const { selectedProduct } = useAppSelector((state) => state.products)
