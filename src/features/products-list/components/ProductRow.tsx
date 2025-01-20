@@ -41,7 +41,7 @@ export default function ProductRow({ product }: Props) {
     <Table.Tr key={product.title}>
       <Table.Td>
         <Link to={`/product/${getCleanWorkId(product.key)}`} onClick={handleRowClicked} className={classes.productCell}>
-          <Text size="lg" fw={500}>
+          <Text size="xl" fw={500}>
             {product.title}
           </Text>
           <Text size="lg">by {product.authors[0].name}</Text>

@@ -1,19 +1,22 @@
-import { Box, Grid, Group, Image, LoadingOverlay, Stack, Text, Title } from '@mantine/core'
-import { useParams } from 'react-router-dom'
+import { Box, Grid, Group, LoadingOverlay, Stack, Text, Title, useMantineTheme } from '@mantine/core'
+import { Link, useParams } from 'react-router-dom'
 import { useGetBookByWorkIdQuery } from '@store/slices/booksSlice'
 import SubjectChip from '@features/subject-section/SubjectSection'
 import BuyButton from '@features/buy-button/BuyButton'
 import { useAppSelector } from '@store/hooks'
 import { CartItem, Description, ProductResponse } from '@typings/product.types'
 import { getCleanAuthorId, getCleanWorkId } from '@utils/getCleanIds'
+import { useMediaQuery } from '@mantine/hooks'
+import CoverImage from '@features/cover-image/CoverImage'
 
 export default function DetailsPage() {
   const { selectedProduct } = useAppSelector((state) => state.products)
 
+  const theme = useMantineTheme()
+  const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.xs})`)
+
   const { id } = useParams<{ id: string }>()
   const { data, isLoading, isError } = useGetBookByWorkIdQuery(id ?? '')
-
-  const coverUrl = selectedProduct?.isbn ? `https://covers.openlibrary.org/b/isbn/${selectedProduct?.isbn}-M.jpg` : null
 
   const mapToCartItem = (data: ProductResponse): CartItem => {
     return {
@@ -34,10 +37,13 @@ export default function DetailsPage() {
 
   return (
     <Grid>
-      <Grid.Col span={3} pr="xl">
-        {coverUrl && <Image src={coverUrl} alt=""></Image>}
+      <Grid.Col span={isMobile ? 12 : 3} pr="xl">
+        <CoverImage isbn={selectedProduct?.isbn ?? null} />
       </Grid.Col>
-      <Grid.Col span={9}>
+      <Grid.Col span={isMobile ? 12 : 9} ta={isMobile ? 'center' : 'left'}>
+        <Link to={'/'} color="#3d405b">
+          Products
+        </Link>
         <Box pos="relative" mih={100}>
           <LoadingOverlay visible={isLoading} />
           {data ? (
@@ -47,14 +53,14 @@ export default function DetailsPage() {
                 <Text size="lg">by {selectedProduct?.author ?? getCleanAuthorId(data.authors[0].author.key)}</Text>
               </Stack>
               {data.first_sentence && (
-                <Text size="xl" fs="italic">
+                <Text size="xl" fs="italic" ta={'left'} style={{ fontFamily: 'EB Garamond' }}>
                   {data.first_sentence.value}
                 </Text>
               )}
               <SubjectChip subjects={data.subjects} />
-              <Text>{getDescription(data.description)}</Text>
+              <Text ta="left">{getDescription(data.description)}</Text>
               <Group justify="end" mt="xl">
-                <BuyButton product={mapToCartItem(data)} size="md" />
+                <BuyButton product={mapToCartItem(data)} size="lg" />
               </Group>
             </Stack>
           ) : (

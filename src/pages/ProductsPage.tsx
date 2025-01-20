@@ -1,8 +1,9 @@
-import { Box, Group, Stack, Text, Title } from '@mantine/core'
+import { Group, Stack } from '@mantine/core'
 import FilterButton from '@components/filter-button/FilterButton'
 import ProductsList from '@features/products-list/ProductsList'
 import { Filter } from '@typings/filter.types'
 import { useState } from 'react'
+import TitleSection from '@features/title-section/TitleSection'
 
 const filters: Filter[] = [
   { title: 'Romance', subject: 'romance' },
@@ -16,17 +17,7 @@ export default function ProductsPage() {
 
   return (
     <>
-      <Box ta="center">
-        <Title fz={45} fw={500} mb="lg">
-          Welcome to a world of stories
-        </Title>
-        <Text size="xl" fs="italic">
-          "I think books are like people, in the sense that they’ll turn up in your life when you most need them."
-        </Text>
-        <Text size="xl" fs="italic">
-          – Emma Thompson
-        </Text>
-      </Box>
+      <TitleSection />
       <Stack mt={50}>
         <Group>
           {filters.map((filter) => (

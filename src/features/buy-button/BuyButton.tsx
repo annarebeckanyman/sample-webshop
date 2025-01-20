@@ -6,7 +6,7 @@ import { FaShoppingBasket } from 'react-icons/fa'
 
 interface Props {
   product: CartItem
-  size: 'sm' | 'md'
+  size: 'sm' | 'md' | 'lg' | 'xl'
 }
 
 export default function BuyButton({ product, size }: Props) {
@@ -27,7 +27,7 @@ export default function BuyButton({ product, size }: Props) {
   }
 
   return (
-    <Button onClick={handleBuyClick} radius="xs" size={size} rightSection={<FaShoppingBasket />}>
+    <Button onClick={handleBuyClick} radius="xs" size={size} color="#E07A5F" rightSection={<FaShoppingBasket />}>
       Buy
     </Button>
   )

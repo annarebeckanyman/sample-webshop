@@ -1,7 +1,7 @@
 import { Box, Button, Text } from '@mantine/core'
-import classes from './styles/filterButton.module.css'
-import { Filter } from '@typings/filter.types'
 import { Dispatch, SetStateAction } from 'react'
+import { Filter } from '@typings/filter.types'
+import classes from './styles/filterButton.module.css'
 
 interface Props {
   filter: Filter
