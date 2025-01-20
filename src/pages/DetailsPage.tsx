@@ -45,7 +45,7 @@ export default function DetailsPage() {
           Products
         </Link>
         <Box pos="relative" mih={100}>
-          <LoadingOverlay visible={isLoading} />
+          <LoadingOverlay visible={isLoading} loaderProps={{ color: '#3d405b' }} />
           {data ? (
             <Stack>
               <Stack gap={5}>

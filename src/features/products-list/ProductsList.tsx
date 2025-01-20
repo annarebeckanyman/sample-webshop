@@ -24,7 +24,7 @@ export default function ProductsList({ filter }: Props) {
         {data ? data.works.length : '0'} products
       </Text>
       <Box pos="relative" mih={100}>
-        <LoadingOverlay visible={isLoading} />
+        <LoadingOverlay visible={isLoading} loaderProps={{ color: '#3d405b' }} />
         <Divider />
         <Table verticalSpacing="md">
           <Table.Tbody>
