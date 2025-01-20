@@ -10,11 +10,14 @@
   text-transform: uppercase;
   font-size: var(--mantine-font-size-xl);
   color: var(--mantine-color-black);
+  text-decoration: underline transparent;
+  text-underline-offset: 6px;
+  transition: text-decoration-color 0.1s ease-in;
 }
 
 .menuLink:hover {
-  text-decoration: underline;
-  text-underline-offset: 6px;
+  text-decoration-color: var(--mantine-color-black);
+  transition: text-decoration-color 0.5s ease-out;
 }
 
 .orderLink {
