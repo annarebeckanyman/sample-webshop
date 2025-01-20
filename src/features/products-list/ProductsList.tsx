@@ -2,6 +2,9 @@ import { Box, Divider, LoadingOverlay, Table, Text } from '@mantine/core'
 import { Filter } from '@typings/filter.types'
 import { useGetBooksBySubjectQuery } from '@store/slices/booksSlice'
 import ProductRow from './components/ProductRow'
+import { useEffect } from 'react'
+import { useAppDispatch } from '@store/hooks'
+import { setSelectedProduct } from '@store/slices/productsSlice'
 
 interface Props {
   filter: Filter
@@ -9,6 +12,11 @@ interface Props {
 
 export default function ProductsList({ filter }: Props) {
   const { data, isLoading, isError } = useGetBooksBySubjectQuery(filter.subject)
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(setSelectedProduct(null))
+  }, [])
 
   return (
     <Box>
