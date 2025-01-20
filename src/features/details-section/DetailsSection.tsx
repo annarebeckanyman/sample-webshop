@@ -20,11 +20,18 @@ export default function DetailsSection() {
     }
   }
 
+  const getShortenedDescription = (description: string) => {
+    if (description.length > 1000) {
+      return `${description.slice(0, 1000)}...`
+    }
+    return description
+  }
+
   const getDescription = (description: Description) => {
     if (typeof description === 'string') {
-      return description
+      return getShortenedDescription(description)
     } else if (description && typeof description === 'object') {
-      return description.value
+      return getShortenedDescription(description.value)
     }
   }
 
