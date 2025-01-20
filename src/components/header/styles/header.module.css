@@ -6,11 +6,6 @@
   text-decoration: none;
 }
 
-.logoText {
-  font-size: var(--mantine-font-size-xl);
-  color: var(--mantine-color-black);
-}
-
 .linkText {
   text-transform: uppercase;
   font-size: var(--mantine-font-size-xl);

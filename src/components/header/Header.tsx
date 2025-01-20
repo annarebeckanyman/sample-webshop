@@ -1,8 +1,9 @@
-import { Burger, Container, Drawer, Flex, Stack, useMantineTheme, Text } from '@mantine/core'
+import { Burger, Container, Drawer, Flex, Image, Stack, useMantineTheme, Text } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
 import { useEffect, useState } from 'react'
 import { FaShoppingBasket } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import logo from '@assets/bookstore-logo.png'
 import { useAppDispatch, useAppSelector } from '@store/hooks'
 import { toggleMobileMenu } from '@store/slices/uiSlice'
 import classes from './styles/header.module.css'
@@ -50,7 +51,7 @@ export default function Header() {
 
   const logoLink = (
     <Link to="/" className={classes.link}>
-      <Text className={classes.logoText}>Sample Webshop</Text>
+      <Image src={logo} alt="Bookstore" h={isMobile ? 55 : 70} />
     </Link>
   )
 

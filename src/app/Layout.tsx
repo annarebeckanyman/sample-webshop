@@ -8,12 +8,12 @@ export default function Layout() {
   const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.xs})`)
 
   return (
-    <AppShell header={{ height: isMobile ? 72 : 98 }} withBorder={false}>
+    <AppShell header={{ height: isMobile ? 90 : 150 }}>
       <AppShell.Header>
         <Header />
       </AppShell.Header>
       <AppShell.Main>
-        <Container h="inherit" size="xl" py="xl">
+        <Container h="inherit" size="xl" pt={isMobile ? 50 : 100} pb="xl">
           <Outlet />
         </Container>
       </AppShell.Main>
