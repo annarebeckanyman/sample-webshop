@@ -1,9 +1,9 @@
 import { Group, Stack } from '@mantine/core'
-import FilterButton from '@components/filter-button/FilterButton'
-import ProductsList from '@features/products-list/ProductsList'
-import { Filter } from '@typings/filter.types'
 import { useState } from 'react'
+import FilterButton from '@features/filter-button/FilterButton'
+import ProductsList from '@features/products-list/ProductsList'
 import TitleSection from '@features/title-section/TitleSection'
+import { Filter } from '@typings/filter.types'
 
 const filters: Filter[] = [
   { title: 'Romance', subject: 'romance' },

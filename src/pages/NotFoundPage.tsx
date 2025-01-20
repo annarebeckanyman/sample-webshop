@@ -1,16 +1,18 @@
-import { Button, Container, Paper, Text, Title } from '@mantine/core'
+import { Button, Group, Stack, Text, Title } from '@mantine/core'
 import { Link } from 'react-router-dom'
 
 export default function NotFoundPage() {
   return (
-    <Container h="inherit" size="xl" m="xl">
-      <Paper radius="md" p="xl" my="xl" mih={500}>
-        <Title fw={500}>Oops, nothing here...</Title>
-        <Text mt="xl">The page doesn'y seem to exist, please try again or return to home.</Text>
+    <Stack gap={5}>
+      <Title fw={400}>Oops, nothing here...</Title>
+      <Text mt="xl">Something went wrong or the page doesn't exist, please try again</Text>
+      <Group>
         <Button component={Link} to={'/'} mt="md" bg="black" size="md" radius="xs">
-          Return to Home
+          <Text tt="uppercase" fw={400} c="">
+            Return to Home
+          </Text>
         </Button>
-      </Paper>
-    </Container>
+      </Group>
+    </Stack>
   )
 }
