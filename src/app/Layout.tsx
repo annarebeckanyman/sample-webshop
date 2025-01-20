@@ -1,4 +1,4 @@
-import { AppShell, Container, Paper, useMantineTheme } from '@mantine/core'
+import { AppShell, Container, useMantineTheme } from '@mantine/core'
 import { Outlet } from 'react-router-dom'
 import Header from '@components/header/Header'
 import { useMediaQuery } from '@mantine/hooks'
@@ -14,9 +14,7 @@ export default function Layout() {
       </AppShell.Header>
       <AppShell.Main>
         <Container h="inherit" size="xl" py="xl">
-          <Paper radius="md" p="xl">
-            <Outlet />
-          </Paper>
+          <Outlet />
         </Container>
       </AppShell.Main>
     </AppShell>
