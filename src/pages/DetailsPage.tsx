@@ -1,10 +1,10 @@
-import { Box, Grid, Group, LoadingOverlay, Stack, Text, Title } from '@mantine/core'
+import { Box, Grid, Group, Image, LoadingOverlay, Stack, Text, Title } from '@mantine/core'
 import { useParams } from 'react-router-dom'
 import { useGetBookByWorkIdQuery } from '@store/slices/booksSlice'
 import SubjectChip from '@features/subject-section/SubjectSection'
 import BuyButton from '@features/buy-button/BuyButton'
 import { useAppSelector } from '@store/hooks'
-import { CartItem, ProductResponse } from '@typings/product.types'
+import { CartItem, Description, ProductResponse } from '@typings/product.types'
 import { getCleanAuthorId, getCleanWorkId } from '@utils/getCleanIds'
 
 export default function DetailsPage() {
@@ -13,10 +13,9 @@ export default function DetailsPage() {
   const { id } = useParams<{ id: string }>()
   const { data, isLoading, isError } = useGetBookByWorkIdQuery(id ?? '')
 
-  // FIX - get cover
-  // const coverUrl = `https://covers.openlibrary.org/b/works/${id}-L.jpg`
+  const coverUrl = selectedProduct?.isbn ? `https://covers.openlibrary.org/b/isbn/${selectedProduct?.isbn}-M.jpg` : null
 
-  const getCartItem = (data: ProductResponse): CartItem => {
+  const mapToCartItem = (data: ProductResponse): CartItem => {
     return {
       workId: getCleanWorkId(data.key),
       title: data.title,
@@ -25,9 +24,19 @@ export default function DetailsPage() {
     }
   }
 
+  const getDescription = (description: Description) => {
+    if (typeof description === 'string') {
+      return description
+    } else if (description && typeof description === 'object') {
+      return description.value
+    }
+  }
+
   return (
     <Grid>
-      <Grid.Col span={3}>{/* <Image src={coverUrl} alt=""></Image> */}</Grid.Col>
+      <Grid.Col span={3} pr="xl">
+        {coverUrl && <Image src={coverUrl} alt=""></Image>}
+      </Grid.Col>
       <Grid.Col span={9}>
         <Box pos="relative" mih={100}>
           <LoadingOverlay visible={isLoading} />
@@ -37,10 +46,15 @@ export default function DetailsPage() {
                 <Title>{data.title}</Title>
                 <Text size="lg">by {selectedProduct?.author ?? getCleanAuthorId(data.authors[0].author.key)}</Text>
               </Stack>
+              {data.first_sentence && (
+                <Text size="xl" fs="italic">
+                  {data.first_sentence.value}
+                </Text>
+              )}
               <SubjectChip subjects={data.subjects} />
-              <Text>{data.description}</Text>
+              <Text>{getDescription(data.description)}</Text>
               <Group justify="end" mt="xl">
-                <BuyButton product={getCartItem(data)} size="md" />
+                <BuyButton product={mapToCartItem(data)} size="md" />
               </Group>
             </Stack>
           ) : (

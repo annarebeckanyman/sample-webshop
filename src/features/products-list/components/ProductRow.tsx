@@ -2,11 +2,11 @@ import { Table, Text } from '@mantine/core'
 import { Link } from 'react-router-dom'
 import BuyButton from '@features/buy-button/BuyButton'
 import SubjectChip from '@features/subject-section/SubjectSection'
-import { CartItem, ProductDetails, Work } from '@typings/product.types'
-import classes from '../styles/productList.module.css'
-import { getCleanWorkId } from '@utils/getCleanIds'
 import { useAppDispatch } from '@store/hooks'
 import { setSelectedProduct } from '@store/slices/productsSlice'
+import { CartItem, ProductDetails, Work } from '@typings/product.types'
+import { getCleanWorkId } from '@utils/getCleanIds'
+import classes from '../styles/productList.module.css'
 
 interface Props {
   product: Work
@@ -24,7 +24,7 @@ export default function ProductRow({ product }: Props) {
     }
   }
 
-  const getCartItem = (): CartItem => {
+  const mapToCartItem = (): CartItem => {
     return {
       workId: getCleanWorkId(product.key),
       title: product.title,
@@ -49,7 +49,7 @@ export default function ProductRow({ product }: Props) {
         </Link>
       </Table.Td>
       <Table.Td className={classes.buttonCell}>
-        <BuyButton product={getCartItem()} size="sm" />
+        <BuyButton product={mapToCartItem()} size="sm" />
       </Table.Td>
     </Table.Tr>
   )
