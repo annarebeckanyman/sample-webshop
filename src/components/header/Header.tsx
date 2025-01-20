@@ -15,6 +15,7 @@ const links = [
 
 export default function Header() {
   const { showMobileMenu } = useAppSelector((state) => state.ui)
+  const { shoppingCart } = useAppSelector((state) => state.products)
   const dispatch = useAppDispatch()
 
   const theme = useMantineTheme()
@@ -61,7 +62,7 @@ export default function Header() {
         <Text mb={1} className={classes.orderLink}>
           Shopping cart
         </Text>
-        <FaShoppingBasket className={classes.orderIcon} aria-labelledby="Shopping cart" />
+        <FaShoppingBasket className={classes.orderIcon} color={shoppingCart.length > 0 ? '#E07A5F' : ''} aria-labelledby="Shopping cart" />
       </Flex>
     </Link>
   )
