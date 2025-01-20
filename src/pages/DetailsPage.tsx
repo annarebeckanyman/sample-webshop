@@ -18,7 +18,7 @@ export default function DetailsPage() {
       </Grid.Col>
       <Grid.Col span={isMobile ? 12 : 9} ta={isMobile ? 'center' : 'left'}>
         <Link to={'/'} color="#3d405b">
-          Products
+          Books
         </Link>
         <DetailsSection />
       </Grid.Col>
