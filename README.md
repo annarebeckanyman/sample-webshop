@@ -1,6 +1,6 @@
 # Sample Webshop
 
-- Node v.20.9.0
+- Node v.22.12.0
 - React v.18
 - Typescript v.5
 - Vite v.6
