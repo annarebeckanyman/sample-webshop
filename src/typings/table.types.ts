@@ -1,4 +1,4 @@
-export type Filter = {
+export type TableFilter = {
   title: string
   subject: string
 }
