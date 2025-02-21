@@ -1,21 +1,23 @@
 import { Box, Button, Text } from '@mantine/core'
-import { Dispatch, SetStateAction } from 'react'
-import { Filter } from '@typings/filter.types'
+import { useAppDispatch, useAppSelector } from '@store/hooks'
+import { setActiveFilter } from '@store/slices/productsSlice'
+import { TableFilter } from '@typings/table.types'
 import classes from './styles/filterButton.module.css'
 
 interface Props {
-  filter: Filter
-  activeFilter: Filter
-  setActiveFilter: Dispatch<SetStateAction<Filter>>
+  filter: TableFilter
 }
 
-export default function FilterButton({ filter, activeFilter, setActiveFilter }: Props) {
+export default function FilterButton({ filter }: Props) {
+  const { activeFilter } = useAppSelector((state) => state.products)
+  const dispatch = useAppDispatch()
+
   const isActive = filter.subject === activeFilter.subject
 
   return (
     <Box>
       <Button
-        onClick={() => setActiveFilter(filter)}
+        onClick={() => dispatch(setActiveFilter(filter))}
         size="lg"
         variant="outline"
         radius="xs"
