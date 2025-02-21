@@ -1,11 +1,11 @@
-import { Burger, Container, Drawer, Flex, Image, Stack, useMantineTheme, Text } from '@mantine/core'
+import logo from '@assets/logo.png'
+import { Burger, Container, Drawer, Flex, Image, Stack, Text, useMantineTheme } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
+import { useAppDispatch, useAppSelector } from '@store/hooks'
+import { toggleMobileMenu } from '@store/slices/uiSlice'
 import { useEffect, useState } from 'react'
 import { FaShoppingBasket } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import logo from '@assets/logo.png'
-import { useAppDispatch, useAppSelector } from '@store/hooks'
-import { toggleMobileMenu } from '@store/slices/uiSlice'
 import classes from './styles/header.module.css'
 
 const links = [
@@ -15,7 +15,7 @@ const links = [
 
 export default function Header() {
   const { showMobileMenu } = useAppSelector((state) => state.ui)
-  const { shoppingCart } = useAppSelector((state) => state.products)
+  const { cart } = useAppSelector((state) => state.products)
   const dispatch = useAppDispatch()
 
   const theme = useMantineTheme()
@@ -62,7 +62,11 @@ export default function Header() {
         <Text mb={1} className={classes.orderLink}>
           Shopping cart
         </Text>
-        <FaShoppingBasket className={classes.orderIcon} color={shoppingCart.length > 0 ? '#E07A5F' : ''} aria-labelledby="Shopping cart" />
+        <FaShoppingBasket
+          className={classes.orderIcon}
+          color={cart.length > 0 ? '#E07A5F' : ''}
+          aria-labelledby="Shopping cart"
+        />
       </Flex>
     </Link>
   )
