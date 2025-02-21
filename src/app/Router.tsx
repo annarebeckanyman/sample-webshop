@@ -1,10 +1,10 @@
+import Checkout from '@pages/Checkout'
+import Contact from '@pages/Contact'
+import NotFound from '@pages/NotFound'
+import ProductDetails from '@pages/ProductDetails'
+import Products from '@pages/Products'
 import { createBrowserRouter } from 'react-router-dom'
 import Layout from './Layout'
-import NotFoundPage from '@pages/NotFoundPage'
-import ProductsPage from '@pages/ProductsPage'
-import DetailsPage from '@pages/DetailsPage'
-import ContactPage from '@pages/ContactPage'
-import CheckoutPage from '@pages/CheckoutPage'
 
 const Router = createBrowserRouter([
   {
@@ -12,25 +12,25 @@ const Router = createBrowserRouter([
     element: <Layout />,
     errorElement: (
       <Layout>
-        <NotFoundPage />
+        <NotFound />
       </Layout>
     ),
     children: [
       {
         path: '/',
-        element: <ProductsPage />,
+        element: <Products />,
       },
       {
         path: '/product/:id',
-        element: <DetailsPage />,
+        element: <ProductDetails />,
       },
       {
         path: '/contact',
-        element: <ContactPage />,
+        element: <Contact />,
       },
       {
         path: '/checkout',
-        element: <CheckoutPage />,
+        element: <Checkout />,
       },
     ],
   },

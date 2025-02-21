@@ -1,33 +1,30 @@
 import { Button, Group, Stack, Text, Title } from '@mantine/core'
 import { nanoid } from '@reduxjs/toolkit'
 import { useAppDispatch, useAppSelector } from '@store/hooks'
-import { setShoppingCart } from '@store/slices/productsSlice'
+import { setCart } from '@store/slices/productsSlice'
+import { getAuthors } from '@utils/getAuthors'
 
-export default function CheckoutPage() {
-  const { shoppingCart } = useAppSelector((state) => state.products)
+export default function Checkout() {
+  const { cart } = useAppSelector((state) => state.products)
   const dispatch = useAppDispatch()
-
-  const handleEmptyCart = () => {
-    dispatch(setShoppingCart([]))
-  }
 
   return (
     <Stack>
       <Title fw={400}>Shopping cart</Title>
-      {shoppingCart.length > 0 ? (
+      {cart.length > 0 ? (
         <>
-          {shoppingCart.map((item) => (
+          {cart.map((item) => (
             <Text key={nanoid()}>
-              {item.title}, {item.author}, Quantity: {item.quantity}
+              {item.title}, {getAuthors(item.authors)}, Quantity: {item.quantity}
             </Text>
           ))}
         </>
       ) : (
         <Text>No products added</Text>
       )}
-      {shoppingCart.length > 0 && (
+      {cart.length > 0 && (
         <Group>
-          <Button onClick={handleEmptyCart} color="#E07A5F" radius="xs">
+          <Button onClick={() => dispatch(setCart([]))} color="#E07A5F" radius="xs">
             Empty Cart
           </Button>
         </Group>

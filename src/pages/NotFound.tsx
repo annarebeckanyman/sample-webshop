@@ -1,7 +1,7 @@
 import { Button, Group, Stack, Text, Title } from '@mantine/core'
 import { Link } from 'react-router-dom'
 
-export default function NotFoundPage() {
+export default function NotFound() {
   return (
     <Stack gap={5}>
       <Title fw={400}>Oops, nothing here...</Title>
