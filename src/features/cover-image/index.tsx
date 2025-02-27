@@ -10,9 +10,11 @@ export default function CoverImage({ coverUrl }: Props) {
   const theme = useMantineTheme()
   const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.xs})`)
 
-  return coverUrl ? (
+  const secureUrl = coverUrl?.replace(/^http:\/\//i, 'https://')
+
+  return secureUrl ? (
     <Group justify={isMobile ? 'center' : 'left'}>
-      <Image src={coverUrl} alt="Book cover" w={250} h="auto" fit="contain" className={classes.imageShadow} />
+      <Image src={secureUrl} alt="Book cover" w={250} h="auto" fit="contain" className={classes.imageShadow} />
     </Group>
   ) : null
 }
