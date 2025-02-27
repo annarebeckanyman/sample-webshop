@@ -16,7 +16,6 @@ export const booksApi = createApi({
   reducerPath: 'booksApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://www.googleapis.com/books/v1',
-    credentials: 'omit',
   }),
   endpoints: (builder) => ({
     getAllBooks: builder.query<BooksResponse, void>({
