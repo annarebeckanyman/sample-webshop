@@ -4,8 +4,8 @@ import { useMediaQuery } from '@mantine/hooks'
 import { useAppDispatch, useAppSelector } from '@store/hooks'
 import { toggleMobileMenu } from '@store/slices/uiSlice'
 import { useEffect, useState } from 'react'
-import { FaShoppingBasket } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import CartButton from './components/CartButton'
 import classes from './styles/header.module.css'
 
 const links = [
@@ -15,7 +15,6 @@ const links = [
 
 export default function Header() {
   const { showMobileMenu } = useAppSelector((state) => state.ui)
-  const { cart } = useAppSelector((state) => state.products)
   const dispatch = useAppDispatch()
 
   const theme = useMantineTheme()
@@ -56,18 +55,9 @@ export default function Header() {
     </Link>
   )
 
-  const orderLink = (
+  const cartLink = (
     <Link to="/checkout" onClick={() => handleLinkClick('/checkout')} className={classes.link}>
-      <Flex align="center" gap="xs">
-        <Text mb={1} className={classes.orderLink}>
-          Shopping cart
-        </Text>
-        <FaShoppingBasket
-          className={classes.orderIcon}
-          color={cart.length > 0 ? '#E07A5F' : ''}
-          aria-labelledby="Shopping cart"
-        />
-      </Flex>
+      <CartButton />
     </Link>
   )
 
@@ -88,7 +78,7 @@ export default function Header() {
                 {logoLink}
                 {menuLinks}
               </Flex>
-              {orderLink}
+              {cartLink}
             </>
           )}
         </Flex>
@@ -97,7 +87,7 @@ export default function Header() {
         <Stack gap="lg" mb="xl">
           {menuLinks}
         </Stack>
-        {orderLink}
+        {cartLink}
       </Drawer>
     </Container>
   )
