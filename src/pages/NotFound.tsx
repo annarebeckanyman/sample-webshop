@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <Stack gap={5}>
       <Title fw={400}>Oops, nothing here...</Title>
-      <Text mt="xl">Something went wrong or the page doesn't exist, please try again</Text>
+      <Text mt="xl">Something went wrong or the page doesn&apos;t exist, please try again</Text>
       <Group>
         <Button component={Link} to={'/'} mt="md" bg="black" size="md" radius="xs">
           <Text tt="uppercase" fw={400} c="">

@@ -8,7 +8,8 @@ export default function TitleSection() {
         Welcome to a world of stories
       </Title>
       <Text size="xl" fs="italic">
-        "I think books are like people, in the sense that they’ll turn up in your life when you most need them."
+        &quot;I think books are like people, in the sense that they’ll turn up in your life when you most need
+        them.&quot;
       </Text>
       <Text size="xl" fs="italic">
         – Emma Thompson
