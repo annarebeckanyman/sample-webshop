@@ -1,7 +1,7 @@
 import { useGetBooksBySubjectQuery } from '@api/booksApi'
-import { Box, Divider, Table } from '@mantine/core'
+import { Box, Divider, Flex, Pagination, Table } from '@mantine/core'
 import { useAppSelector } from '@store/hooks'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import LoadingRow from './components/LoadingRow'
 import MessageRow from './components/MessageRow'
 import ProductRow from './components/ProductRow'
@@ -11,21 +11,27 @@ export default function ProductList() {
   const { activeFilter } = useAppSelector((state) => state.products)
   const { data, isLoading, isFetching, isError } = useGetBooksBySubjectQuery(activeFilter.subject)
 
-  const [tableLoading, setTableLoading] = useState(true)
+  const [activePage, setActivePage] = useState(1)
+
+  const totalPages = Math.ceil((data?.totalItems ?? 0) / 10)
+
+  const activeItems = useMemo(() => {
+    const start = (activePage - 1) * 10
+    const end = activePage * 10
+    return data?.items?.slice(start, end) ?? []
+  }, [data?.items, activePage])
 
   useEffect(() => {
-    if (!isLoading) {
-      setTableLoading(false)
-    }
-  }, [isLoading])
+    setActivePage(1)
+  }, [activeFilter])
 
-  useEffect(() => {
-    if (isFetching) {
-      setTableLoading(true)
-    } else {
-      setTableLoading(false)
-    }
-  }, [isFetching])
+  const handlePageChange = (newPage: number) => {
+    setActivePage(newPage)
+    window.scroll({
+      top: 0,
+      behavior: 'smooth',
+    })
+  }
 
   return (
     <Box>
@@ -33,19 +39,18 @@ export default function ProductList() {
       <Divider />
       <Table verticalSpacing="md">
         <Table.Tbody>
-          {tableLoading ? (
+          {isLoading || isFetching ? (
             <LoadingRow />
+          ) : activeItems.length ? (
+            activeItems.map((item) => <ProductRow key={item.id} item={item} />)
           ) : (
-            <>
-              {data?.items?.length ? (
-                data.items.map((item) => <ProductRow key={item.id} item={item} />)
-              ) : (
-                <MessageRow isError={isError} />
-              )}
-            </>
+            <MessageRow isError={isError} />
           )}
         </Table.Tbody>
       </Table>
+      <Flex justify="center">
+        <Pagination total={totalPages} value={activePage} onChange={handlePageChange} color="#3d405b" />
+      </Flex>
     </Box>
   )
 }
