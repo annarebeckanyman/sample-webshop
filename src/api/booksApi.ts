@@ -18,10 +18,6 @@ export const booksApi = createApi({
     baseUrl: 'https://www.googleapis.com/books/v1',
   }),
   endpoints: (builder) => ({
-    getAllBooks: builder.query<BooksResponse, void>({
-      query: () => `/volumes?q=*&maxResults=40`,
-      transformResponse: (response: BooksResponse) => getSellableResponse(response),
-    }),
     getBooksBySubject: builder.query<BooksResponse, string>({
       query: (category) => `/volumes?q=*+subject:${category}&maxResults=40`,
       transformResponse: (response: BooksResponse) => getSellableResponse(response),
@@ -41,4 +37,4 @@ export const booksApi = createApi({
   }),
 })
 
-export const { useGetAllBooksQuery, useGetBooksBySubjectQuery, useGetBookByIdQuery } = booksApi
+export const { useGetBooksBySubjectQuery, useGetBookByIdQuery } = booksApi
