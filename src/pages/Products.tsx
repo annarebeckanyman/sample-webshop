@@ -8,7 +8,7 @@ export default function Products() {
   return (
     <Stack>
       <TitleSection />
-      <Group mt="xl">
+      <Group mt="xl" justify="center">
         {filters.map((filter) => (
           <FilterButton key={filter.subject} filter={filter} />
         ))}
