@@ -1,6 +1,7 @@
 import { Box, useMantineTheme } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
 import { Link } from 'react-router-dom'
+import classes from './styles/breadcrumbs.module.css'
 
 interface Props {
   title?: string
@@ -17,7 +18,7 @@ export default function Breadcrumbs({ title }: Props) {
         top={isMobile ? -40 : -85}
         style={{ fontSize: isMobile ? theme.fontSizes.sm : theme.fontSizes.md }}
       >
-        <Link to={'/'} color="#3d405b">
+        <Link to={'/'} className={classes.link}>
           Products
         </Link>
         {title && (
