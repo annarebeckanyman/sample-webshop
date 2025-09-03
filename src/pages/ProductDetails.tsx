@@ -1,10 +1,12 @@
 import { useGetBookByIdQuery } from '@api/booksApi'
 import Breadcrumbs from '@features/breadcrumbs'
 import BuyButton from '@features/buy-button'
+import CategoryBadge from '@features/category-badge'
 import CoverImage from '@features/cover-image'
-import VolumeSection from '@features/volume-info'
-import { Grid, Group, LoadingOverlay, Stack, Text, useMantineTheme } from '@mantine/core'
+import { Grid, Group, LoadingOverlay, Stack, Text, Title, useMantineTheme } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
+import { getAuthors } from '@utils/getAuthors'
+import { shortenTitle } from '@utils/shortenTitle'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
@@ -30,11 +32,17 @@ export default function ProductDetails() {
       {data ? (
         <Grid>
           <Grid.Col span={isMobile ? 12 : 3} pr="xl">
-            <CoverImage coverUrl={data?.volumeInfo.imageLinks?.thumbnail} />
+            <CoverImage coverUrl={data.volumeInfo.imageLinks?.thumbnail} />
           </Grid.Col>
-          <Grid.Col span={isMobile ? 12 : 9} ta={isMobile ? 'center' : 'left'}>
+          <Grid.Col span={isMobile ? 12 : 9}>
             <Stack>
-              <VolumeSection volume={data.volumeInfo} />
+              <Stack gap={5} ta={isMobile ? 'center' : 'left'}>
+                <Title>{shortenTitle(data.volumeInfo.title, 100)}</Title>
+                {data.volumeInfo.subtitle && <Title size="xl">{data.volumeInfo.subtitle}</Title>}
+                <Text size="lg">by {getAuthors(data.volumeInfo.authors)}</Text>
+              </Stack>
+              <CategoryBadge categories={data.volumeInfo.categories} />
+              <Text dangerouslySetInnerHTML={{ __html: data.volumeInfo.description ?? 'No description available.' }} />
               <Group justify="end" mt="xl">
                 <BuyButton item={data} size="lg" />
               </Group>
